@@ -25,7 +25,7 @@ class FileControll
 			exit;
 		}
 
-
+		$this->ResizeImagesScale('50');
 		$uploaddir = '../www/'.$dir;
 		$uploadfile = $uploaddir . basename($this->image['name']);
 
@@ -48,7 +48,8 @@ class FileControll
 	public function ResizeImagesScale($value = "100") {
 		$width = $this->getWidth() * $value/100;
 		$height = $this->getHeight() * $value/100;
-
+		$new_image = imagecreatetruecolor($width, $height);
+		imagecopyresampled($new_image, $this->image['tmp_name'], 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
 		
 	}
 }

@@ -17,6 +17,10 @@ class main
 	}
 
 	public function Page() {
+		
+
+		session_start();
+
 
 		if($_SERVER['REQUEST_URI'] == '/') $Page = 'index';
 		else{
