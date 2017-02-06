@@ -1,28 +1,4 @@
 <?php
-	session_start();
-	function GHash($length) {
-		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789";
-		$code = "";
-		$clen = strlen($chars) - 1;  
-		while (strlen($code) < $length) {
-			$code .= $chars[mt_rand(0,$clen)];  
-		}
-		return $code;
-	}
-	
-	function codPass($pass){
-		$pass = md5(md5($pass).'cod'.md5($pass));
-		return $pass;
-	}
-	
-	function Connect(){
-		include_once '../setting.php';
-		$host=HOST;
-		$db=DB;
-		$DBH = new PDO("mysql:host=$host;dbname=$db", USER, PASS);
-		$DBH->exec('SET NAMES UTF8');
-		return $DBH;
-	}
 		
 	if(!empty($_POST['login']) and !empty($_POST['password']) and !empty($_POST['email']) and !empty($_POST['captcha'])) {
 		if (($_SESSION['captcha'] != codPass($_POST['captcha'])) or !preg_match('/^[0-9]{1,5}$/', $_POST['captcha'])) exit('Каптча введена неверно.');

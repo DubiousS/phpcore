@@ -5,11 +5,7 @@ class FileControll
 
 	public $image;
 
-	public function UploadImages($dir = "", $name = "", $size = 2097152) {
-
-		if(empty($name)) {
-			$name = basename($this->image['name']);
-		}
+	public function UploadImages($dir = "", $size = 2097152) {
 
 		$blacklist = array(".php", ".phtml", ".php3", ".php4", ".js", ".exe");
 		foreach ($blacklist as $item) {
@@ -32,7 +28,7 @@ class FileControll
 
 
 		$uploaddir = '../www/'.$dir;
-		$uploadfile = $uploaddir . $name;
+		$uploadfile = $uploaddir . basename($this->image['name']);
 
 
 		if (move_uploaded_file($this->image['tmp_name'], $uploadfile)) {
@@ -47,7 +43,7 @@ class FileControll
 	public function getHeight() {
 		return getimagesize($this->image['tmp_name'])[1];
 	}
-
+	
 
 	public function ResizeImagesScale($value = "100") {
 		$width = $this->getWidth() * $value/100;

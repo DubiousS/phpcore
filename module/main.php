@@ -1,10 +1,19 @@
 <?php
-
 class main
 {
 
 	public function theme_head($title){
 		include_once("theme/head.php");
+	}
+
+	public function RandCode($length) {
+		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789";
+		$code = "";
+		$clen = strlen($chars) - 1;  
+		while (strlen($code) < $length) {
+			$code .= $chars[mt_rand(0,$clen)];  
+		}
+		return $code;
 	}
 
 	public function theme_footer(){
