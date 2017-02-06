@@ -5,7 +5,11 @@ class FileControll
 
 	public $image;
 
-	public function UploadImages($dir = "", $size = 2097152) {
+	public function UploadImages($dir = "", $name = "", $size = 2097152) {
+
+		if(empty($name)) {
+			$name = basename($this->image['name']);
+		}
 
 		$blacklist = array(".php", ".phtml", ".php3", ".php4", ".js", ".exe");
 		foreach ($blacklist as $item) {
@@ -25,9 +29,10 @@ class FileControll
 			exit;
 		}
 
-		$this->ResizeImagesScale('50');
+
+
 		$uploaddir = '../www/'.$dir;
-		$uploadfile = $uploaddir . basename($this->image['name']);
+		$uploadfile = $uploaddir . $name;
 
 
 		if (move_uploaded_file($this->image['tmp_name'], $uploadfile)) {
@@ -35,7 +40,6 @@ class FileControll
 		} else {
 			echo "Ошибка при загрузки файла.\n";
 		}
-
 	}
 	public function getWidth() {
 		return getimagesize($this->image['tmp_name'])[0];
