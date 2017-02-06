@@ -19,7 +19,6 @@ class FileControll
 			exit;
 		}
 
-
 		$temp = $this->getWidth() / $this->getHeight();
 		if($temp > 5 || $temp < 0.2) {
 			echo "Некорректная ширина или высота.";
