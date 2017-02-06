@@ -119,6 +119,8 @@ class FileControll
 	public function ResizeImagesScale($value = "100") {
 		$width = $this->getWidth() * $value/100;
 		$height = $this->getHeight() * $value/100;
+
+		
 	}
 }
 
