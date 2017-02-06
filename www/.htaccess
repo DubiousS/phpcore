@@ -1,0 +1,21 @@
+Options All -ExecCGI -Indexes -Includes +FollowSymLinks
+
+AddType 'text/html; charset=utf-8' .html .htm .shtml
+
+ServerSignature Off
+AddDefaultCharset UTF-8
+
+DirectoryIndex index.php
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [L,QSA]
+
+
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	RewriteBase /
+	RewriteCond %{HTTP_HOST} ^sitename
+	RewriteRule (.*) http://sitename/$1 [R=301,L]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
+	RewriteRule ^index\.php$ http://sitename/ [R=301,L]
+</IfModule>
