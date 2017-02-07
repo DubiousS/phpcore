@@ -1,14 +1,13 @@
 <?php
-
 global $s;
 $s->theme_head('Сайт');
 $file = new FileControll();
 if(isset($_FILES['userfile'])) {
 	$file->image = $_FILES['userfile'];
-	$file->uploadImages();
-	$file->ResizeImagesScale('50');
-	$file->SaveImage('resource/', $s->RandCode(10));
-
+	if($file->uploadImages()) {
+		$file->ResizeImagesScale('200');
+		$file->SaveImage('resource/', $s->RandCode(10));
+	}
 }
 ?>
 
