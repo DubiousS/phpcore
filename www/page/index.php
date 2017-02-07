@@ -9,6 +9,11 @@ if(isset($_FILES['userfile'])) {
 		$file->SaveImage('resource/', $s->RandCode(10));
 	}
 }
+$bd = new DataBase();
+$C = $bd->Connect();
+$C = $bd->Query(1556567);
+
+
 ?>
 
 <form name="upload" action="" method="POST" ENCTYPE="multipart/form-data">

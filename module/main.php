@@ -57,7 +57,7 @@ class DataBase
 
 	public function Connect()
 	{
-		if(!empty($this->Connect)) {
+		if(empty($this->DBH)) {
 			require  'setting.php';
 			$host = HOST;
 			$db = DB;
@@ -68,24 +68,24 @@ class DataBase
 				$this->DBH = $DBH;
 				return $this->DBH;
 			} 
-			catch(PDOException $e) {  
-				echo "Произошла ошибка.";  
+			catch(PDOException $e) {    
     		//file_put_contents('log/error.log', $e->getMessage(), FILE_APPEND); 
 			}
 		} else {
 			return $this->DBH;
 		}
 	}
-	public function Query($dbh)
-	{
-		if (!empty($dbh)) {
-			$query=$dbh->prepare("SELECT * FROM `people` WHERE `id`=:id");
-			$param = ['id'=> $id];
+	public function Query($id) {
+		if (!empty($this->DBH)) {
+			$query=($this->DBH)->prepare("SELECT * FROM `people` WHERE id=:id");
+			$param = ['id' => $id];
 			$query->execute($param);
 			$Result = $query->fetchAll();
 			foreach($Result as $row) {
 			}
 			return $row;
+		} else {
+			echo "Отсутствует подключение к базе данных.";
 		}
 	}
 	public function Like(){
