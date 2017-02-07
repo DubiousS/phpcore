@@ -4,6 +4,25 @@ class FileControll
 {
 	public $image;
 	public $type;
+	public $file;
+
+	public function UploadDoc() {
+		$whitelist = array(".doc", ".docx");
+		$i = 0;
+		foreach ($whitelist as $item) {
+			if(preg_match("/$item\$/i", $this->image['name']) == 1) {
+				$this->type = $item;
+				$i++;
+				break;
+			}
+		}
+		if($i == 0) {
+			echo "Ошибка при загрузки файла.\n";
+			exit;
+		}
+
+	}
+
 	public function UploadImages($size = 2097152) {
 
 		$whitelist = array(".jpeg", ".jpg", ".png", ".gif");
