@@ -5,9 +5,11 @@ $s->theme_head('Сайт');
 $file = new FileControll();
 if(isset($_FILES['userfile'])) {
 	$file->image = $_FILES['userfile'];
-	$file->uploadImages("resource/");
+	$file->uploadImages();
+	$file->ResizeImagesScale('50');
+	$file->SaveImage('resource/', $s->RandCode(10));
+
 }
-echo HOST;
 ?>
 
 <form name="upload" action="" method="POST" ENCTYPE="multipart/form-data">
