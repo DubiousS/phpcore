@@ -75,10 +75,10 @@ class DataBase
 			return $this->DBH;
 		}
 	}
-	public function Query($id) {
+	public function Query($param, $param2) {
 		if (!empty($this->DBH)) {
-			$query=($this->DBH)->prepare("SELECT * FROM `people` WHERE id=:id");
-			$param = ['id' => $id];
+			$query=($this->DBH)->prepare("$param");//SELECT * FROM `people` WHERE id=:id
+			//$param = ['id' => $id];
 			$query->execute($param);
 			$Result = $query->fetchAll();
 			foreach($Result as $row) {
