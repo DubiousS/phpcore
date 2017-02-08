@@ -57,6 +57,8 @@ class FileControll
 			else if($this->type = ".png") $this->image = imagepng($this->image, $uploadfile);
 			else if($this->type = ".gif") $this->image = imagegif($this->image, $uploadfile);
 			echo "Файл успешно загружен.";
+		} else { 
+			echo 'Во время загрузки файла произошла ошибка.';
 		}
 	}
 	private function getWidth() {
@@ -73,6 +75,9 @@ class FileControll
 			imagecopyresampled($new_image, $this->image, 0, 100, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());	
 			$this->image = $new_image;
 		}
+	}
+	public function DeleteImage($image) {
+		unlink("$image");
 	}
 }
 

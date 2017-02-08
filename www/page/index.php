@@ -7,11 +7,10 @@ if(isset($_FILES['userfile'])) {
 	if($file->uploadImages()) {
 		$file->ResizeImagesScale('200');
 		$file->SaveImage('resource/', $s->RandCode(10));
+		$file->DeleteImage('./resource/name.jpeg');
 	}
 }
-$bd = new DataBase();
-$C = $bd->Connect();
-$C = $bd->Query(1556567);
+
 
 
 ?>
