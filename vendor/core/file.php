@@ -95,6 +95,10 @@ class FileControll
 		return imagesy($this->image);
 	}
 
+	public function Output() 
+	{	
+	}
+
 	public function ResizeImagesScale($value = "100")
 	{
 		if($value != 100 && isset($this->image)) {
@@ -143,7 +147,7 @@ class FileControll
 	
 		unlink("$image");
 	}
-	
+
 }
 
 ?>

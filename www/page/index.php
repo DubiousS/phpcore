@@ -5,8 +5,9 @@ $file = new FileControll();
 if(isset($_FILES['userfile'])) {
 	$file->image = $_FILES['userfile'];
 	if($file->uploadImages()) {
+		$file->Output();
 		$file->CropImages(500, 500, 300, 200);
-		$file->ResizeImagesScale('10');
+		$file->ResizeImagesScale('50');
 		$file->SaveImage('resource/', $s->RandCode(10));
 		
 
@@ -23,7 +24,6 @@ $bd->InsUpdDel("DELETE FROM `people` WHERE `id` = :id", ['id'=> 2]);
 */
 
 ?>
-
 <form name="upload" action="" method="POST" ENCTYPE="multipart/form-data">
  Select the file to upload:<br><br><input type="file" name="userfile"><br><br>
  <input type="submit" name="upload" value="upload">
