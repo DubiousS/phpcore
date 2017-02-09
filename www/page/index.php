@@ -5,19 +5,22 @@ $file = new FileControll();
 if(isset($_FILES['userfile'])) {
 	$file->image = $_FILES['userfile'];
 	if($file->uploadImages()) {
-		$file->ResizeImagesScale('20');
+		$file->ResizeImagesScale('50');
+		$file->ResizeImages(100, 100, 100, 100);
 		$file->SaveImage('resource/', $s->RandCode(10));
+		
+
 
 	}
 }
 $bd = new DataBase();
 $bd->Connect();
-$result = $bd->Query('SELECT * FROM `people` WHERE id=:id AND `active` = 0', ['id' => 1]);
+/*$result = $bd->Query('SELECT * FROM `people` WHERE id=:id AND `active` = 0', ['id' => 1]);
 if(!empty($result)) {
 	var_dump($result);
 }
 $bd->InsUpdDel("DELETE FROM `people` WHERE `id` = :id", ['id'=> 2]);
-
+*/
 
 ?>
 
