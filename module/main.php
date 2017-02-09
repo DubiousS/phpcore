@@ -77,13 +77,14 @@ class DataBase
 	}
 	public function Query($param, $param2) {
 		if (!empty($this->DBH)) {
-			$query=($this->DBH)->prepare("$param");//SELECT * FROM `people` WHERE id=:id
-			//$param = ['id' => $id];
-			$query->execute($param);
+			$query=($this->DBH)->prepare("$param");
+			$query->execute($param2);
 			$Result = $query->fetchAll();
-			foreach($Result as $row) {
+			if(!empty($Result)) {
+				foreach($Result as $row) {
+				}
+				return $row;
 			}
-			return $row;
 		} else {
 			echo "Отсутствует подключение к базе данных.";
 		}

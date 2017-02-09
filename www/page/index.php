@@ -7,9 +7,12 @@ if(isset($_FILES['userfile'])) {
 	if($file->uploadImages()) {
 		$file->ResizeImagesScale('200');
 		$file->SaveImage('resource/', $s->RandCode(10));
-		$file->DeleteImage('./resource/name.jpeg');
+
 	}
 }
+$bd = new DataBase();
+$bd->Connect();
+var_dump($bd->Query('SELECT * FROM `people` WHERE id=:id AND `active` = 0', ['id' => 1556567]));
 
 
 
