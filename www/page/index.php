@@ -12,8 +12,11 @@ if(isset($_FILES['userfile'])) {
 }
 $bd = new DataBase();
 $bd->Connect();
-var_dump($bd->Query('SELECT * FROM `people` WHERE id=:id AND `active` = 0', ['id' => 1556567]));
-
+$result = $bd->Query('SELECT * FROM `people` WHERE id=:id AND `active` = 0', ['id' => 1]);
+if(!empty($result)) {
+	var_dump($result);
+}
+$bd->InsUpdDel("DELETE FROM `people` WHERE `id` = :id", ['id'=> 2]);
 
 
 ?>

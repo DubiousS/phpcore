@@ -25,6 +25,7 @@ class main
 		exit('ERROR');
 	}
 
+
 	public function Page() {
 		
 
@@ -85,10 +86,17 @@ class DataBase
 				}
 				return $row;
 			}
-		} else {
-			echo "Отсутствует подключение к базе данных.";
 		}
 	}
+
+	public function InsUpdDel($param, $param2) {
+		if (!empty($this->DBH)) {
+			$query = ($this->DBH)->prepare("$param");
+			$query->execute($param2);
+		}
+	}
+
+
 	public function Like(){
 		$input = "%$input%";
 		$query=$DBH->prepare("SELECT `FIO`, `id`, `info_one` FROM `people` WHERE `FIO` LIKE :input OR `info_one` LIKE :input AND `active`='1'");
