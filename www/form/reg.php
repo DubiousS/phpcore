@@ -23,8 +23,7 @@
 				$param = ['login'=> $_POST['login'], 'password'=> $password, 'email'=> $_POST['email'], 'hash'=> $hash];
 				$query->execute($param);
 				//mail($_POST['email'], ',', 'email', 'From: admin@admin.com');
-				exit('correct');
-				
+				exit('correct');	
 			}
 		} else exit('Произошла ошибка. Попробуйте позже.');
 

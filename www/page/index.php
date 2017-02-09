@@ -5,7 +5,7 @@ $file = new FileControll();
 if(isset($_FILES['userfile'])) {
 	$file->image = $_FILES['userfile'];
 	if($file->uploadImages()) {
-		$file->ResizeImagesScale('200');
+		$file->ResizeImagesScale('20');
 		$file->SaveImage('resource/', $s->RandCode(10));
 
 	}

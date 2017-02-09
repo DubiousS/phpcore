@@ -72,7 +72,7 @@ class FileControll
 			$width = $this->getWidth() * $value/100;
 			$height = $this->getHeight() * $value/100;
 			$new_image = imagecreatetruecolor($width, $height);
-			imagecopyresampled($new_image, $this->image, 0, 100, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());	
+			imagecopyresampled($new_image, $this->image, 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());	
 			$this->image = $new_image;
 		}
 	}

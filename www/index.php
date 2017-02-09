@@ -1,6 +1,6 @@
 <?php
-require '../module/main.php';
-require '../module/file.php';
+require __DIR__ . '/../module/main.php';
+require __DIR__ . '/../module/file.php';
 $s = new main();
 $s->Page();
 ?>

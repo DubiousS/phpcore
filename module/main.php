@@ -98,9 +98,8 @@ class DataBase
 
 
 	public function Like(){
-		$input = "%$input%";
 		$query=$DBH->prepare("SELECT `FIO`, `id`, `info_one` FROM `people` WHERE `FIO` LIKE :input OR `info_one` LIKE :input AND `active`='1'");
-		$param = ['input'=> $input];
+		$param = ['input'=> "%$input%"];
 		$query->execute($param);
 		$Result = $query->fetchAll(PDO::FETCH_ASSOC);
 		return $Result;
