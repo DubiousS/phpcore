@@ -25,9 +25,10 @@ class FileControll
 		
 				if($temp != $item) {
 					unset($this->image);
+					
 					return 0;
 				}
-		
+				
 				$this->type = $item;
 				$i++;
 				break;
@@ -36,11 +37,13 @@ class FileControll
 		
 		if($i == 0) {
 			unset($this->image);
+			
 			return 0;
 		}
 		
 		if($this->image['size'] > $size) {
 			unset($this->image);
+
 			return 0;
 		}
 		
@@ -48,13 +51,14 @@ class FileControll
 		
 		if($temp > 5 || $temp < 0.2) {
 			unset($this->image);
+
 			return 0;
 		}
 		
 		if($this->type == ".jpeg") $this->image = imagecreatefromjpeg($this->image['tmp_name']);
 		else if($this->type == ".png") $this->image = imagecreatefrompng($this->image['tmp_name']);
 		else if($this->type == ".gif") $this->image = imagecreatefromgif($this->image['tmp_name']);
-		
+		else return 0;
 
 		return 1; 
 	}
@@ -69,6 +73,7 @@ class FileControll
 			if($this->type = ".jpeg") $this->image = imagejpeg($this->image, $uploadfile);
 			else if($this->type = ".png") $this->image = imagepng($this->image, $uploadfile);
 			else if($this->type = ".gif") $this->image = imagegif($this->image, $uploadfile);
+			else return 0;
 
 			return 1;
 
@@ -196,9 +201,7 @@ class FileControll
 
 				return 1;
 
-			} else {
-				return 0;
-			}
+			} else return 0;
 		} else  return 0;
 	}
 

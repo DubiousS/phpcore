@@ -10,13 +10,13 @@ if(isset($_FILES['userfile'])) {
 		if($file->ResizeImagesScale(50)) echo 'Уменьшена на 50%.<br>';
 		if($file->toHeight(500)) echo 'Высота уменьшена до 500 пикселей.<br>';
 		if($file->toWidth(800)) echo 'Ширина уменьшена уменьшена до 800 пикселей.<br>';
-		if($file->Vod("../www/resource/5Hsp40ZGjU.jpeg", 100)) echo 'Водяной знак добавлен.<br>';
+		//if($file->Vod("../www/resource/5Hsp40ZGjU.jpeg", 100)) echo 'Водяной знак добавлен.<br>';
 		if($file->SaveImage('resource/', $name)) echo 'Фотография сохранена.<br>';
 	} else echo "Ошибка при загрузке файла.";
 }
-$bd = new DataBase();
+/*$bd = new DataBase();
 $bd->Connect();
-/*$result = $bd->Query('SELECT * FROM `people` WHERE id=:id AND `active` = 0', ['id' => 1]);
+$result = $bd->Query('SELECT * FROM `people` WHERE id=:id AND `active` = 0', ['id' => 1]);
 if(!empty($result)) {
 	var_dump($result);
 }
