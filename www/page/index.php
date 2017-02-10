@@ -5,11 +5,11 @@ $file = new FileControll();
 if(isset($_FILES['userfile'])) {
 	$file->image = $_FILES['userfile'];
 	if($file->uploadImages()) {
-		if($file->CropImages(400, 400, 300, 0)) echo 'Фотография обрезана.<br>';
+		//if($file->CropImages(400, 400, 300, 0)) echo 'Фотография обрезана.<br>';
 		if($file->ResizeImagesScale(50)) echo 'Уменьшена на 50%.<br>';
 		if($file->toHeight(500)) echo 'Высота уменьшена до 500 пикселей.<br>';
 		if($file->toWidth(800)) echo 'Ширина уменьшена уменьшена до 800 пикселей.<br>';
-		if($file->Vod($file->image, 10, 10, 10)) echo 'Водяной знак добавлен.<br>';
+		if($file->Vod("../www/resource/5Hsp40ZGjU.jpeg", 100)) echo 'Водяной знак добавлен.<br>';
 		if($file->SaveImage('resource/', $s->RandCode(10))) echo 'Фотография сохранена.<br>';
 	} else echo "Ошибка при загрузке файла.";
 }

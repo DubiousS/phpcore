@@ -115,6 +115,9 @@ class FileControll
 	{
 		if(!empty($img) && ($left >= 0) && ($top >= 0) && ($h_r > 0)){
 			if($img != $this->image) {
+
+				if(!file_exists($img)) return 0;
+
 				$type = getimagesize($img)['mime'];
 				$w = getimagesize($img)[0];
 				$h = getimagesize($img)[1];
