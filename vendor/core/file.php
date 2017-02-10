@@ -95,6 +95,24 @@ class FileControll
 		return imagesy($this->image);
 	}
 
+	public function toHeight($height)
+	{
+		if(isset($this->image) && $height < $this->getHeight() && $height > 0) {
+			$k = $this->getHeight() / $height;
+			$width = $this->getHeight() / $k;
+			$this->ResizeImages($width, $height);
+		}
+	}
+
+	public function toWidth($width)
+	{
+		if(isset($this->image) && $width < $this->getWidth() && $width > 0) {
+			$k = $this->getWidth() / $width;
+			$height = $this->getHeight() / $k;
+			$this->ResizeImages($width, $height);
+		}
+	}
+
 	public function Vod($img, $h_r, $left = 0, $top = 0) 
 	{
 		if(!empty($img) && ($left > 0) && ($top > 0) && ($h_r > 0)){
@@ -130,7 +148,7 @@ class FileControll
 
 	public function ResizeImagesScale($value = "100")
 	{
-		if($value != 100 && isset($this->image)) {
+		if($value != 100 && $value > 0 && $value < 200 && isset($this->image)) {
 
 			$width = $this->getWidth() * $value/100;
 			$height = $this->getHeight() * $value/100;
@@ -138,7 +156,7 @@ class FileControll
 		}
 	}
 
-	public function ResizeImages($width, $height)
+	private function ResizeImages($width, $height)
 	{	
 		if(isset($this->image) && $width > 0 && $height > 0) {
 

@@ -6,9 +6,11 @@ if(isset($_FILES['userfile'])) {
 	$file->image = $_FILES['userfile'];
 	if($file->uploadImages()) {
 		
-		$file->CropImages(400, 400, 300, 0);
+		//$file->CropImages(400, 400, 300, 0);
 		$file->ResizeImagesScale(50);
-		//$file->Vod('../www/resource/logo.png', 100, 10, 10);
+		//$file->toHeight(500);
+		$file->toWidth(500);
+		//$file->Vod('../www/resource/logo.png', 300, 10, 10);
 		$file->SaveImage('resource/', $s->RandCode(10));
 		
 
