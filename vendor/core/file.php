@@ -140,7 +140,7 @@ class FileControll
 				$w_r = $w / ($h / $h_r);
 			}
 			if(($w_r + $left < $this->getWidth()) && ($h_r + $top < $this->getHeight())) {
-				echo 1;
+				
 				$new = imagecreatetruecolor($w, $h);
 
 				$transparent = imagecolorallocatealpha($new, 0, 0, 0, 127);
@@ -200,7 +200,7 @@ class FileControll
 
 	public function DeleteImage($image) 
 	{
-		
+
 		unlink("$image");
 	}
 
