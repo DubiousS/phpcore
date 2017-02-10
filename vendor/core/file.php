@@ -61,7 +61,7 @@ class FileControll
 
 	public function SaveImage($dir, $name)
 	{
-		if(isset($this->image)) {
+		if(isset($this->image) && !empty($dir) && !empty($name)) {
 			
 			$uploaddir = '../www/'.$dir;
 			$uploadfile = $uploaddir .''. $name .''.$this->type ;
@@ -74,7 +74,6 @@ class FileControll
 
 		} else { 
 			unset($this->image);
-
 			return 0;
 		}
 	}
@@ -206,7 +205,8 @@ class FileControll
 	public function DeleteImage($image) 
 	{
 
-		unlink("$image");
+		if(unlink("$image")) return 1;
+		else return 0;
 	}
 
 }
