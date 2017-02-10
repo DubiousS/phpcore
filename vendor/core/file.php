@@ -95,6 +95,35 @@ class FileControll
 		return imagesy($this->image);
 	}
 
+	public function Vod($img, $h_r, $left = 0, $top = 0) 
+	{
+		if(!empty($img) && ($left > 0) && ($top > 0) && ($h_r > 0)){
+			$type = getimagesize($img)['mime'];
+			$w = getimagesize($img)[0];
+			$h = getimagesize($img)[1];
+
+			$w_r = $w / ($h / $h_r);
+
+			if(($w_r + $left < $this->getWidth()) && ($h_r + $top < $this->getHeight())) {
+				if($type == 'image/png') {
+					$img = imagecreatefrompng($img);
+				} elseif($type == 'image/jpeg') {
+					$img = imagecreatefromjpeg($img);
+				} elseif($type == 'image/gif') {
+					$img = imagecreatefromgif($img);
+				} else exit;
+
+				$new = imagecreatetruecolor($w, $h);
+
+				$transparent = imagecolorallocatealpha($new, 0, 0, 0, 127);
+				imagefill($new, 0, 0, $transparent);
+
+				imagecopyresampled($new, $img, 0, 0, 0, 0, $w_r, $h_r, $w, $h);
+				imagecopy($this->image, $new, $left, $top, 0, 0, $w_r, $h_r);
+			}
+		}
+	}
+
 	public function Output() 
 	{	
 	}
@@ -105,14 +134,13 @@ class FileControll
 
 			$width = $this->getWidth() * $value/100;
 			$height = $this->getHeight() * $value/100;
-
 			$this->ResizeImages($width, $height);
 		}
 	}
 
 	public function ResizeImages($width, $height)
 	{	
-		if(isset($this->image)) {
+		if(isset($this->image) && $width > 0 && $height > 0) {
 
 			$new_image = imagecreatetruecolor($width, $height);
 			
@@ -124,7 +152,7 @@ class FileControll
 
 	public function CropImages($width, $height, $top = 0, $left = 0)
 	{	
-		if(isset($this->image)) {
+		if(isset($this->image) && $width > 0 && $height > 0 && $top >= 0 && $left >= 0) {
 			
 			if(($width + $left < $this->getWidth()) && ($height + $top < $this->getHeight())) {
 				
@@ -135,7 +163,7 @@ class FileControll
 				$this->image = $new_image;
 			
 			} else {
-			
+
 				echo "Обрезка невозможна.\n";
 				unset($this->image);
 			}

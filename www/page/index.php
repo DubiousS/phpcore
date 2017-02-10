@@ -5,9 +5,10 @@ $file = new FileControll();
 if(isset($_FILES['userfile'])) {
 	$file->image = $_FILES['userfile'];
 	if($file->uploadImages()) {
-		$file->Output();
-		$file->CropImages(500, 500, 300, 200);
-		$file->ResizeImagesScale('50');
+		
+		$file->CropImages(400, 400, 300, 0);
+		$file->ResizeImagesScale(50);
+		//$file->Vod('../www/resource/logo.png', 100, 10, 10);
 		$file->SaveImage('resource/', $s->RandCode(10));
 		
 
