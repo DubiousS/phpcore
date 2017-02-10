@@ -25,8 +25,7 @@ class FileControll
 		
 				if($temp != $item) {
 					unset($this->image);
-					echo "Ошибка при загрузки файла.\n";
-					exit;
+					return 0;
 				}
 		
 				$this->type = $item;
@@ -37,22 +36,19 @@ class FileControll
 		
 		if($i == 0) {
 			unset($this->image);
-			echo "Ошибка при загрузки файла.\n";
-			exit;
+			return 0;
 		}
 		
 		if($this->image['size'] > $size) {
 			unset($this->image);
-			echo "Файл слишком большого размера.";
-			exit;
+			return 0;
 		}
 		
 		$temp = getimagesize($this->image['tmp_name'])[0] / getimagesize($this->image['tmp_name'])[1];
 		
 		if($temp > 5 || $temp < 0.2) {
 			unset($this->image);
-			echo "Некорректная ширина или высота.";
-			exit;
+			return 0;
 		}
 		
 		if($this->type == ".jpeg") $this->image = imagecreatefromjpeg($this->image['tmp_name']);
@@ -73,13 +69,13 @@ class FileControll
 			if($this->type = ".jpeg") $this->image = imagejpeg($this->image, $uploadfile);
 			else if($this->type = ".png") $this->image = imagepng($this->image, $uploadfile);
 			else if($this->type = ".gif") $this->image = imagegif($this->image, $uploadfile);
-			
-			echo "Файл успешно загружен.";
+
+			return 1;
+
 		} else { 
-			
-			echo 'Во время загрузки файла произошла ошибка.';
 			unset($this->image);
-		
+
+			return 0;
 		}
 	}
 
@@ -99,8 +95,9 @@ class FileControll
 	{
 		if(isset($this->image) && $height < $this->getHeight() && $height > 0) {
 			$k = $this->getHeight() / $height;
-			$width = $this->getHeight() / $k;
-			$this->ResizeImages($width, $height);
+			$width = $this->getWidth() / $k;
+			if($this->ResizeImages($width, $height)) return 1;
+			else return 0;
 		}
 	}
 
@@ -109,7 +106,8 @@ class FileControll
 		if(isset($this->image) && $width < $this->getWidth() && $width > 0) {
 			$k = $this->getWidth() / $width;
 			$height = $this->getHeight() / $k;
-			$this->ResizeImages($width, $height);
+			if($this->ResizeImages($width, $height)) return 1;
+			else return 0;
 		}
 	}
 
@@ -130,7 +128,7 @@ class FileControll
 						$img = imagecreatefromjpeg($img);
 					} elseif($type == 'image/gif') {
 						$img = imagecreatefromgif($img);
-					} else exit;
+					} else return 0;;
 
 			} else {
 
@@ -148,8 +146,9 @@ class FileControll
 
 				imagecopyresampled($new, $img, 0, 0, 0, 0, $w_r, $h_r, $w, $h);
 				imagecopy($this->image, $new, $left, $top, 0, 0, $w_r, $h_r);
-			}
-		}
+				return 1;
+			} else  return 0;
+		} else  return 0;
 	}
 
 	public function Output() 
@@ -162,8 +161,10 @@ class FileControll
 
 			$width = $this->getWidth() * $value/100;
 			$height = $this->getHeight() * $value/100;
-			$this->ResizeImages($width, $height);
-		}
+
+			if($this->ResizeImages($width, $height)) return 1;
+			else  return 0;
+		} else  return 0;
 	}
 
 	private function ResizeImages($width, $height)
@@ -174,8 +175,9 @@ class FileControll
 			
 			imagecopyresampled($new_image, $this->image, 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
 			
-			$this->image = $new_image;	
-		}
+			$this->image = $new_image;
+			return 1;	
+		} else  return 0;
 	}
 
 	public function CropImages($width, $height, $top = 0, $left = 0)
@@ -189,13 +191,13 @@ class FileControll
 				imagecopy($new_image, $this->image, 0, 0, $top, $left, $width, $height);
 				
 				$this->image = $new_image;
-			
-			} else {
 
-				echo "Обрезка невозможна.\n";
-				unset($this->image);
+				return 1;
+
+			} else {
+				return 0;
 			}
-		}
+		} else  return 0;
 	}
 
 	public function DeleteImage($image) 
