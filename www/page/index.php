@@ -9,8 +9,8 @@ if(isset($_FILES['userfile'])) {
 		//$file->CropImages(400, 400, 300, 0);
 		$file->ResizeImagesScale(50);
 		//$file->toHeight(500);
-		$file->toWidth(500);
-		//$file->Vod('../www/resource/logo.png', 300, 10, 10);
+		//$file->toWidth(800);
+		$file->Vod($file->image, 1000, 10, 10);
 		$file->SaveImage('resource/', $s->RandCode(10));
 		
 
