@@ -159,7 +159,21 @@ class FileControll
 	}
 
 	public function Output() 
-	{	
+	{
+		if($this->type = ".jpeg") {
+			header("Content-Type: images/jpeg");
+			imagejpeg($this->image);
+		}
+		else if($this->type = ".png") {
+			header("Content-Type: images/png");
+			imagepng($this->image);
+		}
+			else if($this->type = ".gif") {
+				header("Content-Type: images/gif");
+				imagegif($this->image);
+			}
+			else return 0;
+			
 	}
 
 	public function ResizeImagesScale($value = "100")

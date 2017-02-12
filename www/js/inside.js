@@ -1,57 +1,58 @@
 $('document').ready(function(){
-	$('.button').on('click', function(){
-		var login = $('.log').val();
-		var password = $('.pass').val();
-		var email = $('.email').val();
-		var captcha = $('.cap').val();
-		var str = 'login=' + login + '&password=' + password + '&email=' + email + '&captcha=' + captcha;
-		$.ajax({
-			url: '/form/reg.php',
-			type: 'POST',
-			data: str,
-			dataType: 'html',
-			cache: 'false',
-			success: function(data){
-				document.getElementById('capimg').src = 'resource/captcha.php';
-				$('.cap').val('');
-				if(data == 'correct') {
-					$('.register').remove();
-					$('.result').text('Регистрация прощла успешно.');
-					$('.result').css({display: 'block', backgroundColor: 'green'})
-					window.location.assign("../login");
-				} else {
-					$('.result').text(data);
-					$('.result').css({display: 'block'})
-				}
-			}
-		})
-	})
-	$('.login').on('click', function(){
-		var login = $('.log').val();
-		var password = $('.pass').val();
-		var captcha = $('.cap').val();
-		var str = 'login=' + login + '&password=' + password + '&captcha=' + captcha;
-		$.ajax({
-			url: '/form/login.php',
-			type: 'POST',
-			data: str,
-			dataType: 'html',
-			cache: 'false',
-			success: function(data){
-				document.getElementById('capimg').src = 'resource/captcha.php';
-				$('.cap').val('');
-				$('.pass').val('');
-				if(data == 'correct') {
-					$('.login_div').remove();
-					$('.result').text('Вход выполнен успешно.');
-					$('.result').css({display: 'block', backgroundColor: 'green'})
-					window.location.assign("../profile");
-				} else {
-					$('.result').text(data);
-					$('.result').css({display: 'block'})
-				}
-			}
-		})
-	})
-	
+$( function() {
+		$("#crop").draggable({
+			containment: ".photo"
+		});
+	});
+	$( function() {
+		$("#crop").resizable({containment:'.photo'})
+	});
+	$(".but").on('click', function(event) {
+		var w = $('#crop').width();
+		var t = $('#crop').css("top");
+		var l = $('#crop').css("left");
+		var h = $('#crop').height();
+		alert('width - ' + w + 'height - ' + h + 'left - ' + l + 'top - ' + t  );
+		alert(k);
+	});
+
+
+	function renderImage(file) {
+
+ 		var reader = new FileReader();
+
+ 		reader.onload = function(event) {
+ 			the_url = event.target.result
+ 			$('.img').attr({
+ 				src: the_url
+ 			});
+ 		}
+
+ 		reader.readAsDataURL(file);
+	}
+
+$(".file").change(function() {
+   renderImage(this.files[0])
+});
+
+$("form[name='upload']").submit(function(e) {
+        var formData = new FormData($(this)[0]);
+
+        $.ajax({
+            url: 'form/load.php',
+            type: "POST",
+            data: formData,
+            async: false,
+            success: function (msg) {
+                alert(msg);
+            },
+            error: function(msg) {
+                alert('Ошибка!');
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+        e.preventDefault();
+    });
 });

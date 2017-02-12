@@ -1,0 +1,29 @@
+.block{
+	width: 500px;
+	height: 500px;
+	background-color: #000;
+	overflow: hidden;
+	position: relative;
+}
+.photo{
+	width: 500px;
+	min-height: 300px;
+	height: auto;
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+}
+#crop { 
+	width: 200px; 
+	height: 200px; 
+	outline: rgba(0,0,0,0.8) solid 1500px; 
+	border: 1px dotted #fff;
+	position: absolute; 
+	top:0; 
+	left: 0;
+}
+.but {
+	width: 100px;
+	height: 100px;
+	background: #111;
+}
