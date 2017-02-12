@@ -1,5 +1,8 @@
 <?php
 require '/../xamp/htdocs/blog.local/vendor/core/file.php';
+if(isset($_POST["send"])) echo $_POST["send"];
+var_dump($_POST);
+
 $file = new FileControll();
 if(isset($_FILES['userfile'])) {
 	$file->image = $_FILES['userfile'];

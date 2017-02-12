@@ -37,7 +37,10 @@ $(".file").change(function() {
 
 $("form[name='upload']").submit(function(e) {
         var formData = new FormData($(this)[0]);
-
+        var w = $('#crop').width();
+        var t = $('#crop').css("top");
+        var l = $('#crop').css("left");
+        var h = $('#crop').height();
         $.ajax({
             url: 'form/load.php',
             type: "POST",
