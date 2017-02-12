@@ -83,13 +83,13 @@ class FileControll
 		}
 	}
 
-	private function getWidth() 
+	public function getWidth() 
 	{
 		
 		return imagesx($this->image);
 	}
 
-	private function getHeight() 
+	public function getHeight() 
 	{
 
 		return imagesy($this->image);
@@ -209,7 +209,7 @@ class FileControll
 				
 				$new_image = imagecreatetruecolor($width, $height);
 				
-				imagecopy($new_image, $this->image, 0, 0, $top, $left, $width, $height);
+				imagecopy($new_image, $this->image, 0, 0, $left, $top, $width, $height);
 				
 				$this->image = $new_image;
 

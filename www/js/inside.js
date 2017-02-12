@@ -7,15 +7,6 @@ $( function() {
 	$( function() {
 		$("#crop").resizable({containment:'.photo'})
 	});
-	$(".but").on('click', function(event) {
-		var w = $('#crop').width();
-		var t = $('#crop').css("top");
-		var l = $('#crop').css("left");
-		var h = $('#crop').height();
-		alert('width - ' + w + 'height - ' + h + 'left - ' + l + 'top - ' + t  );
-		alert(k);
-	});
-
 
 	function renderImage(file) {
 
@@ -37,12 +28,13 @@ $(".file").change(function() {
 
 $("form[name='upload']").submit(function(e) {
         var formData = new FormData($(this)[0]);
+        var wImg = $('.img').width();
         var w = $('#crop').width();
         var t = $('#crop').css("top");
         var l = $('#crop').css("left");
         var h = $('#crop').height();
         $.ajax({
-            url: 'form/load.php',
+            url: 'form/load.php?widthIm=' + wImg + '&width=' + w + '&top=' + t + '&left=' + l + '&height=' + h,
             type: "POST",
             data: formData,
             async: false,
