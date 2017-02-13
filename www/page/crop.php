@@ -8,7 +8,7 @@ $s->theme_head('Сайт');
 
 
 <form name="upload" method="POST" ENCTYPE="multipart/form-data" class="form">
-	<input type="file" name="userfile" class="file"><input type="submit" name="upload" value="Загрузить" class="button_file">
+	<input type="file" name="userfile" class="file button_file"><input type="submit" name="upload" value="Загрузить" class="button_file">
 </form>
 
 <?php

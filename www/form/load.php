@@ -1,8 +1,10 @@
 <?php
+use vendore\core\FileControll as FileC;
+
 require '/../xamp/htdocs/blog.local/vendor/core/file.php';
 
 if(isset($_FILES['userfile'])) {
-	$file = new FileControll();
+	$file = new FileC();
 	$file->image = $_FILES['userfile'];
 	if($file->uploadImages()) {
 		$wImg = $_GET['widthIm'];

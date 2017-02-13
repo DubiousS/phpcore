@@ -1,4 +1,6 @@
 <?php 
+namespace vendore\core;
+
 
 class FileControll
 {
