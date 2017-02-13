@@ -1,3 +1,6 @@
+*{margin:0; padding:0; text-decoration:none; font-family:trebuchet ms; outline:none; box-sizing:border-box;}
+a{color:#000; text-decoration:none;}
+img{padding: 0; margin: 0;}
 .block{
 	width: 500px;
 	height: 500px;
@@ -6,24 +9,25 @@
 	position: relative;
 }
 .photo{
-	width: 500px;
-	min-height: 300px;
-	height: auto;
+	max-width: 500px;
+	width: 100%;
+	min-height: 250px;
 	position: relative;
 	display: inline-block;
 	overflow: hidden;
 }
+
 #crop { 
-	width: 200px; 
-	height: 200px; 
-	outline: rgba(0,0,0,0.8) solid 1500px; 
-	border: 1px dotted #fff;
+	cursor: move;
+	min-width: 100px; 
+	min-height: 100px;  
+	outline: rgba(0,0,0,0.8) solid 1500px;
+	border: 1px dotted #696969;
 	position: absolute; 
 	top:0; 
 	left: 0;
 }
-.but {
+.button_file{
 	width: 100px;
-	height: 100px;
-	background: #111;
+	height: 30px;
 }

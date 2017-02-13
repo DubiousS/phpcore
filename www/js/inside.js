@@ -1,13 +1,16 @@
 $('document').ready(function(){
-$( function() {
-		$("#crop").draggable({
-			containment: ".photo"
-		});
-	});
-	$( function() {
-		$("#crop").resizable({containment:'.photo'})
-	});
-
+    $( function() {
+        $("#crop").draggable({
+           containment: ".photo"
+        });
+        $("#crop").resizable({
+            containment:'.photo',
+            aspectRatio: true,
+            handles: "all",
+            minHeight: "100",
+            minWidth: "100"
+        });
+    });
 	function renderImage(file) {
 
  		var reader = new FileReader();
@@ -40,9 +43,7 @@ $("form[name='upload']").submit(function(e) {
             async: false,
             success: function (msg) {
                 alert(msg);
-            },
-            error: function(msg) {
-                alert('Ошибка!');
+                $('.form').trigger('reset');
             },
             cache: false,
             contentType: false,
