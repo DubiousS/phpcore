@@ -1,7 +1,6 @@
 <?php
-use vendore\core\FileControll as FileC;
-
-require '/../xamp/htdocs/blog.local/vendor/core/file.php';
+require '/../xamp/htdocs/blog.local/vendor/file/FileControll.php';
+use vendore\file\FileControll as FileC;
 
 if(isset($_FILES['userfile'])) {
 	$file = new FileC();

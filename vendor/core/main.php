@@ -1,4 +1,6 @@
 <?php
+namespace vendore\core;
+
 class main
 {
 
@@ -46,7 +48,6 @@ class main
 			if($get) {
 				$Page = stristr($Page, $get, true);
 			}
-			unset($get);
 			if(!preg_match('/^[A-z0-9]{3,15}$/', $Page)) $this->NotFound();
 		}
 

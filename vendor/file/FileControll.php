@@ -1,6 +1,5 @@
 <?php 
-namespace vendore\core;
-
+namespace vendore\file;
 
 class FileControll
 {
