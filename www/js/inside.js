@@ -51,4 +51,22 @@ $("form[name='upload']").submit(function(e) {
         });
         e.preventDefault();
     });
+$("form[name='registration']").submit(function(e) {
+        var formData = $("form[name='registration']").serialize();
+        $.ajax({
+            url: 'form/registration.php',
+            type: "POST",
+            data: formData,
+            async: false,
+            success: function (msg) {
+                if(msg != "good") {
+                    alert(msg);
+                } else {
+                    $("form[name='registration']").trigger('reset');
+                }
+            },
+            cache: false
+        });
+        e.preventDefault();
+    });
 });

@@ -36,8 +36,6 @@ class main
 
 	public function Page()
 	{
-		
-
 		session_start();
 
 
