@@ -60,6 +60,9 @@ $("form[name='registration']").submit(function(e) {
             async: false,
             success: function (msg) {
                 if(msg != "good") {
+                    $('.captcha').attr({
+                        src: '/resource/captcha.php'
+                    });
                     alert(msg);
                 } else {
                     $("form[name='registration']").trigger('reset');
