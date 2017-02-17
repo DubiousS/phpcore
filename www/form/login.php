@@ -1,9 +1,7 @@
 <?php
 
 	if(!empty($_POST['login']) and !empty($_POST['password']) and !empty($_POST['captcha'])) {
-		if (($_SESSION['captcha'] != codPass($_POST['captcha'])) or !preg_match('/^[0-9]{1,5}$/', $_POST['captcha'])) exit('Каптча введена неверно.');
-		if((strlen($_POST['login']) < 3) or (strlen($_POST['login']) > 24)) exit('Длинна логина от 3 до 24 символов.');
-		if((strlen($_POST['password']) < 6) or (strlen($_POST['password']) > 32)) exit('Длинна пароля от 6 до 32 символов.');
+		
 		$DBH = Connect();
 		if(!empty($DBH)) {
 			$query=$DBH->prepare("SELECT `login`, `password`, `id` FROM `user` WHERE `login`=:login");

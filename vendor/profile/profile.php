@@ -34,5 +34,17 @@ class profile
 	}
 
 
+	public function CheckLogData($captcha, $login)
+	{
+		if(isset($_SESSION['captcha']) && isset($captcha) && isset($login) && isset($password) && isset($email)){
+			if (($_SESSION['captcha'] != codPass($captcha)) or !preg_match('/^[0-9]{1,5}$/', $captcha)) exit('Каптча введена неверно.');
+			if((strlen($login) < 3) or (strlen($login) > 24)) exit('Длинна логина от 3 до 24 символов.');
+			if((strlen($password) < 6) or (strlen($password) > 32)) exit('Длинна пароля от 6 до 32 символов.');
+			return 1;
+		} else return 0;
+	}
+
+
+
 }
 ?>
