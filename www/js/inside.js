@@ -24,7 +24,6 @@ $('document').ready(function(){
 
  		reader.readAsDataURL(file);
 	}
-
 $(".file").change(function() {
    renderImage(this.files[0])
 });
@@ -63,9 +62,34 @@ $("form[name='registration']").submit(function(e) {
                     $('.captcha').attr({
                         src: '/resource/captcha.php'
                     });
+                    $(".cap").val('');
                     alert(msg);
                 } else {
                     $("form[name='registration']").trigger('reset');
+                }
+            },
+            cache: false
+        });
+        e.preventDefault();
+    });
+
+$("form[name='login']").submit(function(e) {
+        var formData = $("form[name='login']").serialize();
+        $.ajax({
+            url: 'form/login.php',
+            type: "POST",
+            data: formData,
+            async: false,
+            success: function (msg) {
+                if(msg != "good") {
+                    $('.captcha').attr({
+                        src: '/resource/captcha.php'
+                    });
+                    $(".cap").val('');
+                    alert(msg);
+                } else {
+                    $("form[name='login']").trigger('reset');
+
                 }
             },
             cache: false

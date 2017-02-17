@@ -261,6 +261,14 @@ form[name="registration"]{
 	height: 80%;
 
 }
+
+form[name="login"]{
+	text-align: center;
+	width: 85%;
+	max-width: 500px;
+	height: 80%;
+
+}
 .inp_reg{
 	max-width: 400px;
 	padding: 7.5px;
