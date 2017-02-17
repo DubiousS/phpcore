@@ -2,6 +2,7 @@
 <html lang="ru en">
 <head>
 	<meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width"/>
 	<title><?php echo $title; ?></title>
 	<link rel="stylesheet" href="/theme/style/main.css">
 	<link rel="stylesheet" href="js/jquery-ui.min.css">

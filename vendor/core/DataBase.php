@@ -23,12 +23,16 @@ class DataBase
 			return $this->DBH;
 		}
 	}
-	public function Query($param = "", $param2 = "")
+	public function Query($param = "", $param2 = "", $param3 = "")
 	{
 		if (!empty($this->DBH) && !empty($param) && !empty($param2)) {
 			$query=($this->DBH)->prepare("$param");
 			$query->execute($param2);
-			$Result = $query->fetchAll();
+			if(!empty($param3)) {
+				$Result = $query->fetchAll($param3);
+			} else {
+				$Result = $query->fetchAll();	
+			}
 			if(!empty($Result)) {
 				foreach($Result as $row) {
 				}
