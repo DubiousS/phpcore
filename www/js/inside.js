@@ -60,7 +60,7 @@ $("form[name='registration']").submit(function(e) {
             success: function (msg) {
                 if(msg != "good") {
                     $('.captcha').attr({
-                        src: '/resource/captcha.php'
+                        src: '../resource/script/captcha.php'
                     });
                     $(".cap").val('');
                     alert(msg);
@@ -83,7 +83,7 @@ $("form[name='login']").submit(function(e) {
             success: function (msg) {
                 if(msg != "good") {
                     $('.captcha').attr({
-                        src: '/resource/captcha.php'
+                        src: '../resource/script/captcha.php'
                     });
                     $(".cap").val('');
                     alert(msg);

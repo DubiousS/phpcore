@@ -32,7 +32,7 @@ $s->theme_head('Профиль');
 <div class="main">
 	<div class="item_form">
 	</div>
-	<div class="item"> </div>
+	<div class="item"></div>
 	<div class="item"></div>
 	<div class="item"></div>
 	<div class="item"></div>

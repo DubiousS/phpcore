@@ -19,7 +19,16 @@ class profile
 		}
 		return $code;
 	}
-
+	public function Session($Row = "") 
+	{
+		if(!empty($Row)) {
+			$_SESSION['USER_LOGIN'] = '1';
+			$_SESSION['USER_INFO'] = $Row;
+			setcookie('hash', $this->Hash(32), strtotime('+30 days'), '/');
+			setcookie('user', $Row['id'], strtotime('+30 days'), '/');
+			return 1;
+		} else return 0;
+	}
 
 	public function CheckRegData($captcha, $login, $password, $email)
 	{

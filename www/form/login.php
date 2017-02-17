@@ -8,19 +8,16 @@ if(!empty($_POST['login']) and !empty($_POST['password']) and !empty($_POST['cap
 	
 	session_start();
 
-	$reg = new profile();
+	$log = new profile();
 	$bd = new DataBase();
 	if($bd->connect()) {
-		if($reg->CheckLogData($_POST['captcha'], $_POST['login'], $_POST['password'])) {
+		if($log->CheckLogData($_POST['captcha'], $_POST['login'], $_POST['password'])) {
 			$Row = $bd->Query("SELECT `login`, `password`, `id` FROM `user` WHERE `login`=:login", ['login'=> $_POST['login']]);
 			if(!empty($Row)) {
-				if($Row['password'] != $reg->codPass($_POST['password'])) exit($Row['password'].'='.$reg->codPass($_POST['password']).'Неверный логин или пароль.');
+				if($Row['password'] != $log->codPass($_POST['password'])) exit('Неверный логин или пароль.');
 				$Row = $bd->Query("SELECT `login`, `email`, `id`, `active` FROM `user` WHERE `login`=:login", ['login'=> $_POST['login']], PDO::FETCH_ASSOC);
-				$bd->IDU("UPDATE user SET hash=:hash WHERE login=:login", ['login'=> $_POST['login'], 'hash'=>$reg->Hash(32)]);
-				$_SESSION['USER_LOGIN'] = '1';
-				$_SESSION['USER_INFO'] = $Row;
-				setcookie('hash', $reg->Hash(32), strtotime('+30 days'), '/');
-				setcookie('user', $Row['id'], strtotime('+30 days'), '/');
+				$bd->IDU("UPDATE user SET hash=:hash WHERE login=:login", ['login'=> $_POST['login'], 'hash'=>$log->Hash(32)]);
+				$log->Session($Row['id']);
 				exit('good');
 			} else exit('Неверный логин или пароль.');
 		} else exit;
