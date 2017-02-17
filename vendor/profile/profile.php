@@ -19,6 +19,9 @@ class profile
 		}
 		return $code;
 	}
+	public function SessionUnset($Row = ""){
+
+	} 
 	public function Session($Row = "") 
 	{
 		if(!empty($Row)) {
