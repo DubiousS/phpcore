@@ -9,7 +9,7 @@ $s->theme_head('Профиль');
 	<a href="#"><div class="l_button"><div class="l_icon"><div class="l_new">50</div></div><p>Сообщения</p></div><a>
 	<a href="#"><div class="l_button"><div class="l_icon"><div class="l_new">3</div></div><p>Друзья</p></div><a>
 	<a href="#"><div class="l_button"><div class="l_icon"></div><p>Настройка</p></div><a>
-	<a href="#"><div class="l_button"><div class="l_icon"></div><p>Выход</p></div><a>
+	<a href="?logout"><div class="l_button"><div class="l_icon"></div><p>Выход</p></div><a>
 	<hr>
 
 </div>

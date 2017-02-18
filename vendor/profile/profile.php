@@ -15,23 +15,44 @@ class profile
 		$code = "";
 		$clen = strlen($chars) - 1;  
 		while (strlen($code) < $length) {
-			$code .= $chars[mt_rand(0,$clen)];  
+			$code .= $chars[mt_rand(0, $clen)];  
 		}
 		return $code;
 	}
-	public function SessionUnset($Row = ""){
 
-	} 
-	public function Session($Row = "") 
-	{
+	public function Session($Row = "") {
 		if(!empty($Row)) {
 			$_SESSION['USER_LOGIN'] = '1';
 			$_SESSION['USER_INFO'] = $Row;
+		} else {
+			unset($_SESSION['USER_LOGIN']);
+			unset($_SESSION['USER_INFO']);
+		}
+	}
+
+	public function cookie($Row = ""){
+		if(!empty($Row)) {
 			setcookie('hash', $this->Hash(32), strtotime('+30 days'), '/');
 			setcookie('user', $Row['id'], strtotime('+30 days'), '/');
 			return 1;
-		} else return 0;
+		} else {
+			setcookie('hash', '', strtotime('-30 days'), '/');
+			setcookie('user', '', strtotime('-30 days'), '/');
+			unset($_COOKIE['hash']);
+			unset($_COOKIE['user']);
+		}
 	}
+
+
+	public function logout()
+	{
+		if(isset($_GET['logout'])){
+			$this->cookie();
+			$this->Session();
+			header("Location: /");
+		}
+	}
+	
 
 	public function CheckRegData($captcha, $login, $password, $email)
 	{
@@ -55,8 +76,5 @@ class profile
 			return 1;
 		} else return 0;
 	}
-
-
-
 }
 ?>
