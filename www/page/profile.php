@@ -1,5 +1,7 @@
 <?php
 global $s;
+global $profile;
+$profile->PageControll(1);
 $s->theme_head('Профиль');
 
 ?>

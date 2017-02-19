@@ -1,5 +1,7 @@
 <?php
 global $s;
+global $profile;
+$profile->PageControll(0);
 $s->theme_head('Вход');
 
 ?>

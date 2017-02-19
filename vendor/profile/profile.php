@@ -4,7 +4,8 @@ namespace vendor\profile;
 class profile
 {
 
-	public function codPass($pass){
+	public function codPass($pass)
+	{
 		$pass = md5(md5($pass).'cod'.md5($pass));
 		return $pass;
 	}
@@ -18,6 +19,14 @@ class profile
 			$code .= $chars[mt_rand(0, $clen)];  
 		}
 		return $code;
+	}
+
+	public function PageControll($p1) 
+	{
+		if(!isset($_SESSION['USER_LOGIN'])) {
+			$_SESSION['USER_LOGIN'] = 0;
+		}
+		if($_SESSION['USER_LOGIN'] != $p1) exit(header("Location: /"));
 	}
 
 	public function Session($Row = "") {
