@@ -6,7 +6,10 @@ class DataBase
 	public function Connect()
 	{
 		if(empty($this->DBH)) {
-			require  "../setting.php";
+			define ('HOST', 'localhost');
+			define ('USER', 'root');
+			define ('PASS', '');
+			define ('DB', 'blog');
 			$host = HOST;
 			$db = DB;
 			try{

@@ -36,9 +36,6 @@ class main
 
 	public function Page()
 	{
-		session_start();
-
-
 		if($_SERVER['REQUEST_URI'] == '/') $Page = 'index';
 		else{
 			$Page = substr($_SERVER['REQUEST_URI'], 1);

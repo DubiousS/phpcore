@@ -30,11 +30,10 @@ class profile
 		}
 	}
 
-	public function cookie($Row = ""){
-		if(!empty($Row)) {
-			setcookie('hash', $this->Hash(32), strtotime('+30 days'), '/');
+	public function cookie($Row = "", $hash = ""){
+		if(!empty($Row) && !empty($hash)) {
+			setcookie('hash', $hash, strtotime('+30 days'), '/');
 			setcookie('user', $Row['id'], strtotime('+30 days'), '/');
-			return 1;
 		} else {
 			setcookie('hash', '', strtotime('-30 days'), '/');
 			setcookie('user', '', strtotime('-30 days'), '/');
